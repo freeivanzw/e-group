@@ -1,25 +1,17 @@
-import logo from './logo.svg';
+import HeaderWrap from './components/Header/HeaderWrap';
 import './App.css';
+import SiteNavWrap from './components/SiteNav/SiteNavWrap';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  return <div className="app_wrapper">
+    <HeaderWrap />
+    <div className="app_row">
+      <SiteNavWrap />
+      <div className="app_content">
+
+      </div>
     </div>
-  );
+  </div>
 }
 
 export default App;
