@@ -1,11 +1,34 @@
 import React from 'react';
 import Header from './Header'
+import {connect} from 'react-redux';
+import {logoutThunk} from '../../store/reducers/authReducer';
 
 class HeaderWrap extends React.Component {
 
   render() {
-    return <Header />
+    return <Header
+      isAuth={this.props.isAuth}
+      userName={this.props.userName}
+      logout={this.props.logout}
+      captcha={this.props.captcha}
+    />
   }
 }
 
-export default HeaderWrap;
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth,
+    userName: state.auth.myProfile?.fullName,
+    captcha: state.auth.captcha,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => {
+      dispatch(logoutThunk())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderWrap);
