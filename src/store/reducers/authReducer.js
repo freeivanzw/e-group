@@ -4,11 +4,13 @@ const initialState = {
   myProfile: null,
   isAuth: null,
   captchaUrl: undefined,
+  initialApp: false,
 }
 
 const SET_AUTH = 'SET_AUTH';
 const SET_MY_PROFILE = 'SET_MY_PROFILE';
 const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
+const SET_INITIAL_APP = 'SET_INITIAL_APP';
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -30,6 +32,12 @@ export const authReducer = (state = initialState, action) => {
         captchaUrl: action.captchaUrl
       }
     }
+    case (SET_INITIAL_APP): {
+      return {
+        ...state,
+        initialApp: true
+      }
+    }
     default: {
       return state;
     }
@@ -39,6 +47,7 @@ export const authReducer = (state = initialState, action) => {
 const setAuthAC = (isAuth) => ({type: SET_AUTH, isAuth: isAuth});
 const setMyProfileAC = (myProfile) => ({type: SET_MY_PROFILE, myProfile: myProfile});
 const setCaptchaUrlAC = (captchaUrl) => ({type: SET_CAPTCHA_URL, captchaUrl: captchaUrl})
+const setInitialAppAC = () => ({type: SET_INITIAL_APP})
 
 export const setAuthThunk = () => {
   return (dispatch) => {
@@ -49,10 +58,12 @@ export const setAuthThunk = () => {
             .then((data) => {
               dispatch(setAuthAC(true));
               dispatch(setMyProfileAC(data))
+              dispatch(setInitialAppAC())
             })
         } else {
           dispatch(setAuthAC(false));
           dispatch(setMyProfileAC(null))
+          dispatch(setInitialAppAC())
         }
       })
   }
@@ -81,6 +92,7 @@ export const loginThunk = (email, password, rememberMe, captcha, setErrors) => {
 }
 
 export const logoutThunk = () => {
+
   return (dispatch) => {
     authAsync.logout()
       .then((data) => {
@@ -91,6 +103,7 @@ export const logoutThunk = () => {
       })
   }
 }
+
 
 
 
