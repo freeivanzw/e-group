@@ -1,30 +1,41 @@
-import {Field} from 'formik';
+import FormElement from '../common/Form/FormElement';
+import FormCheck from '../common/Form/FormCheck';
+import FormCaptcha from '../common/Form/FormCaptcha';
+import Button from '../common/Button/Button';
+import {LoginFromStyle} from './LoginStyled';
+import {H1} from '../common/Titles/Titles';
 
 const LoginForm = (props) => {
-  const {handleSubmit, errors, captchaUrl} = props
-  return <form
+  const {handleSubmit, errors, captchaUrl, validateEmail, validatePassword} = props;
+  return <LoginFromStyle
     className={`${errors.responseMessage ? 'error_response' : ''}`}
     onSubmit={handleSubmit}
   >
-    <label>
-      <span>Емейл</span>
-      <Field type="email" name="email" placeholder="Емайл" />
-    </label>
-    <label>
-      <span>Пароль</span>
-      <Field type="password" name="password" placeholder="Пароль"/>
-    </label>
-    <label>
-      <Field type="checkbox" name="remember" />
-      <span>Запамятати мене</span>
-    </label>
+    <H1>Увійти</H1>
+    <FormElement
+      type="email"
+      name="email"
+      validate={validateEmail}
+      error={errors.email}
+    >Емейл</FormElement>
+    <FormElement
+      type="password"
+      name="password"
+      validate={validatePassword}
+      error={errors.password}
+    >Пароль</FormElement>
+    <FormCheck
+      type="checkbox"
+      name="remember"
+    >Запамятати мене</FormCheck>
     {captchaUrl
-      && <div className="captcha_login">
-        <img src={captchaUrl} alt="captcha"/>
-        <Field type="text" name="captcha" />
-    </div> }
-    <button type="submit">Увійти</button>
-  </form>
+      && <FormCaptcha
+        captchaUrl={captchaUrl}
+        name="captcha"
+      />
+    }
+    <Button large={true}>Увійти</Button>
+  </LoginFromStyle>
 }
 
 export default LoginForm;

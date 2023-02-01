@@ -13,7 +13,9 @@ const Header = (props) => {
           <UserName>{userName}</UserName>
           <Logout type="button" onClick={logout}>Вийти</Logout>
         </UserBox>
-        : <LoginBtn><NavLink to="/login">Увійти</NavLink></LoginBtn>
+        : <LoginBtn>
+            <NavLink to="/login">Увійти</NavLink>
+        </LoginBtn>
       }
     </CenterContainer>
   </SiteHeader>

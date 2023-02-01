@@ -4,14 +4,21 @@ import LoginForm from './LoginForm';
 import {withFormik} from 'formik';
 import {connect} from 'react-redux';
 import {loginThunk} from '../../store/reducers/authReducer';
+import {Navigate} from 'react-router';
 
 class LoginWrap extends React.Component {
   render() {
+
+    if (this.props.isAuth) {
+      return <Navigate to="/" replace />
+    }
 
     return <Login>
       <LoginFormHOC
         loginThunkLink={this.props.loginThunk}
         captchaUrl={this.props.captchaUrl}
+        validateEmail={validateEmail}
+        validatePassword={validatePassword}
       />
     </Login>
   }
@@ -33,9 +40,28 @@ const LoginFormHOC = withFormik({
   displayName: 'LoginForm',
 })(LoginForm);
 
+const validateEmail = (value) => {
+  let error;
+  if (!value) {
+    error = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+    error = 'Invalid email address';
+  }
+  return error;
+}
+
+const validatePassword = (value) => {
+  let error;
+  if (!value) {
+    error = 'Required';
+  }
+  return error;
+}
+
 const mapStateToProps = (state) => {
   return {
-    captchaUrl: state.auth.captchaUrl
+    captchaUrl: state.auth.captchaUrl,
+    isAuth: state.auth.isAuth,
   }
 }
 

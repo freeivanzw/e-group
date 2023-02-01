@@ -1,20 +1,18 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 import icon from '../../assets/sprite.svg'
 import {CenterContainer} from '../../theme/components/CenterContainer';
 
 export const SiteHeader = styled.header`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px 0;
   background-color: #fff;
   box-shadow: ${({theme}) => theme.color.shadow};
   
   ${CenterContainer} {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 `;
 

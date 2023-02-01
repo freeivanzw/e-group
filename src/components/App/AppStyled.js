@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 
 export const Global = createGlobalStyle`
   @font-face {
@@ -118,4 +118,11 @@ export const Global = createGlobalStyle`
     display: flex;
   }
 
+`
+
+export const AppComponent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding-top: 30px;
 `
