@@ -18,7 +18,7 @@ class HeaderWrap extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
-    userName: state.auth.myProfile?.fullName,
+    userName: state.profile.myProfile?.fullName,
     captcha: state.auth.captcha,
   }
 }

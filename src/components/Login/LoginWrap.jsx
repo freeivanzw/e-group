@@ -1,10 +1,10 @@
 import React from 'react';
-import Login from './Login';
 import LoginForm from './LoginForm';
 import {withFormik} from 'formik';
 import {connect} from 'react-redux';
 import {loginThunk} from '../../store/reducers/authReducer';
 import {Navigate} from 'react-router';
+import {compose} from 'redux';
 
 class LoginWrap extends React.Component {
   render() {
@@ -13,14 +13,30 @@ class LoginWrap extends React.Component {
       return <Navigate to="/" replace />
     }
 
-    return <Login>
-      <LoginFormHOC
-        loginThunkLink={this.props.loginThunk}
-        captchaUrl={this.props.captchaUrl}
-        validateEmail={validateEmail}
-        validatePassword={validatePassword}
-      />
-    </Login>
+    return <LoginForm
+      validateEmail={validateEmail}
+      validatePassword={validatePassword}
+      handleSubmit={this.props.handleSubmit}
+      errors={this.props.errors}
+      loginThunk={this.props.loginThunk}
+      captchaUrl={this.props.captchaUrl}
+    />
+  }
+}
+
+
+const mapStateToProps = (state) => {
+  return {
+    captchaUrl: state.auth.captchaUrl,
+    isAuth: state.auth.isAuth,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginThunk: (email, password, rememberMe, captcha, setErrors) => {
+      dispatch(loginThunk(email, password, rememberMe, captcha, setErrors))
+    }
   }
 }
 
@@ -34,11 +50,11 @@ const LoginFormHOC = withFormik({
 
   handleSubmit: (values, {props, setErrors }) => {
     const {email, password, remember, captcha} = values;
-    props.loginThunkLink(email, password, remember, captcha, setErrors)
+    props.loginThunk(email, password, remember, captcha, setErrors)
   },
 
   displayName: 'LoginForm',
-})(LoginForm);
+});
 
 const validateEmail = (value) => {
   let error;
@@ -58,19 +74,8 @@ const validatePassword = (value) => {
   return error;
 }
 
-const mapStateToProps = (state) => {
-  return {
-    captchaUrl: state.auth.captchaUrl,
-    isAuth: state.auth.isAuth,
-  }
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loginThunk: (email, password, rememberMe, captcha, setErrors) => {
-      dispatch(loginThunk(email, password, rememberMe, captcha, setErrors))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginWrap);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  LoginFormHOC,
+)(LoginWrap);

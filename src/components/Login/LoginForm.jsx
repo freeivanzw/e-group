@@ -7,9 +7,10 @@ import {H1} from '../common/Titles/Titles';
 
 const LoginForm = (props) => {
   const {handleSubmit, errors, captchaUrl, validateEmail, validatePassword} = props;
+
   return <LoginFromStyle
-    className={`${errors.responseMessage ? 'error_response' : ''}`}
     onSubmit={handleSubmit}
+    error={errors.responseMessage}
   >
     <H1>Увійти</H1>
     <FormElement

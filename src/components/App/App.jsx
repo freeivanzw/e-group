@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {setAuthThunk} from '../../store/reducers/authReducer';
+import {setAuthThunk} from '../../store/reducers/profileReducer';
 import {Loader} from '../common/Loader/Loader';
 import {AuthorizedTemp, UnauthorizedTemp} from './Templates';
 

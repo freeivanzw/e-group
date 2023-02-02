@@ -10,11 +10,11 @@ const Header = (props) => {
       <LogoHeader><NavLink to="/">eGroup</NavLink></LogoHeader>
       {isAuth
         ? <UserBox>
-          <UserName>{userName}</UserName>
+          <UserName><NavLink to="profile">{userName}</NavLink></UserName>
           <Logout type="button" onClick={logout}>Вийти</Logout>
         </UserBox>
         : <LoginBtn>
-            <NavLink to="/login">Увійти</NavLink>
+            <NavLink to="login">Увійти</NavLink>
         </LoginBtn>
       }
     </CenterContainer>

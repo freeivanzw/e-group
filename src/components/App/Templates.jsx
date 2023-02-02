@@ -8,6 +8,7 @@ import UsersWrap from '../Users/UsersWrap';
 import UserItemWrap from '../UserItem/UserItemWrap';
 import {Navigate} from 'react-router';
 import {AppComponent} from './AppStyled';
+import ProfileEditWrap from '../ProfileEditWrap/ProfileEditWrap';
 
 
 export const AuthorizedTemp = () => {
@@ -20,6 +21,7 @@ export const AuthorizedTemp = () => {
           <Route path="/" element={<div>start page</div>}/>
           <Route path="login" element={<LoginWrap />}/>
           <Route path="profile" element={<ProfileWrap />}/>
+          <Route path="profile/edit" element={<ProfileEditWrap />}/>
           <Route path="users" element={<UsersWrap />}/>
           <Route path="users/:id" element={<UserItemWrap />}/>
         </Routes>
