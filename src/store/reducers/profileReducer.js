@@ -42,3 +42,18 @@ export const setAuthThunk = () => {
       })
   }
 }
+
+export const updateMyProfileThunk = (myProfile) => {
+  return (dispatch) => {
+    profileAsync.updateMyProfile(myProfile)
+      .then((data) => {
+        if(data.resultCode === 0) {
+          dispatch(setMyProfileAC(myProfile))
+        } else if (data.resultCode === 1) {
+          data.messages.map((error) => {
+            console.error(error)
+          })
+        }
+      })
+  }
+}

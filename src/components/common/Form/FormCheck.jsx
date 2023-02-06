@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const FormCheck = (props) => {
   const {type, name, children} = props;
+
   return  <FormCheckStyle>
     <Field type={type} name={name} />
     <span>{children}</span>

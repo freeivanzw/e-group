@@ -35,6 +35,25 @@ export const profileAsync = {
   getMyProfile: (id) => {
     return socialApi.get(`profile/${id}`)
       .then((res) => res.data)
+  },
+  updateMyProfile: (myProfile) => {
+    return socialApi.put('profile', {
+      aboutMe: myProfile.aboutMe,
+      contacts: {
+        facebook: myProfile.contacts.facebook,
+        github: myProfile.contacts.github,
+        instagram: myProfile.contacts.instagram,
+        mainLink: myProfile.contacts.mainLink,
+        twitter:  myProfile.contacts.twitter,
+        vk: null,
+        website: myProfile.contacts.website,
+        youtube: myProfile.contacts.youtube,
+      },
+      lookingForAJob: myProfile.lookingForAJob,
+      lookingForAJobDescription: myProfile.lookingForAJobDescription,
+      fullName: myProfile.fullName,
+    })
+      .then((res) => res.data);
   }
 }
 

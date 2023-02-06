@@ -66,7 +66,6 @@ export const loginThunk = (email, password, rememberMe, captcha, setErrors) => {
 }
 
 export const logoutThunk = () => {
-
   return (dispatch) => {
     authAsync.logout()
       .then((data) => {
@@ -77,6 +76,7 @@ export const logoutThunk = () => {
       })
   }
 }
+
 
 
 
