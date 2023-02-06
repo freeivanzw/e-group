@@ -1,5 +1,7 @@
 export const theme = {
   color: {
+    danger: '#cc1b1b',
+    success: '#33cc1b',
     text: '#333333',
     link: '#333333',
     border: '#000000',

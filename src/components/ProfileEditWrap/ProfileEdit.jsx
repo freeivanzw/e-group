@@ -1,13 +1,14 @@
 import FormElement from '../common/Form/FormElement';
 import Button from '../common/Button/Button';
 import FormCheck from '../common/Form/FormCheck';
+import {NavLink} from 'react-router-dom';
 
 const ProfileEdit = (props) => {
   const {handleSubmit, errors} = props;
   return <form
     onSubmit={handleSubmit}
   >
-
+    <NavLink to="/profile">Профіль</NavLink>
     <span>Редагування Інформації</span>
     <FormElement type="text" name="fullName" error={errors.fullName}>Моє ім'я</FormElement>
     <FormElement type="text" name="aboutMe" error={errors.aboutMe}>Про мене</FormElement>
