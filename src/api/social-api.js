@@ -54,6 +54,10 @@ export const profileAsync = {
       fullName: myProfile.fullName,
     })
       .then((res) => res.data);
+  },
+  getUserStatus: (id) => {
+    return socialApi.get(`profile/status/${id}`)
+      .then((res) => res.data)
   }
 }
 

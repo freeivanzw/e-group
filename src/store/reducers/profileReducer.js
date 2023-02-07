@@ -2,17 +2,32 @@ import {authAsync, profileAsync} from '../../api/social-api';
 import {setAuthAC, setInitialAppAC} from './authReducer';
 
 const initialState = {
-  myProfile: null,
+  myProfile: {
+    status: null,
+  },
 }
 
 const SET_MY_PROFILE = 'SET_MY_PROFILE';
+const SET_MY_STATUS = 'SET_MY_STATUS';
 
 export const profileReducer = (state = initialState, action ) => {
   switch (action.type){
     case (SET_MY_PROFILE): {
       return {
         ...state,
-        myProfile: action.myProfile
+        myProfile: {
+          ...state.myProfile,
+          ...action.myProfile
+        }
+      }
+    }
+    case (SET_MY_STATUS): {
+      return {
+        ...state,
+        myProfile: {
+          ...state.myProfile,
+          status: action.status
+        }
       }
     }
     default: {
@@ -22,6 +37,7 @@ export const profileReducer = (state = initialState, action ) => {
 }
 
 export const setMyProfileAC = (myProfile) => ({type: SET_MY_PROFILE, myProfile: myProfile});
+export const setMyStatusAC = (status) => ({type: SET_MY_STATUS, status: status})
 
 export const setAuthThunk = () => {
   return (dispatch) => {
@@ -57,3 +73,16 @@ export const updateMyProfileThunk = (myProfile) => {
       })
   }
 }
+
+export const setMyStatusThunk = () => {
+
+  return (dispatch, getState) => {
+    profileAsync.getUserStatus(getState().profile.myProfile.userId)
+      .then((data) => {
+        dispatch(setMyStatusAC(data));
+      })
+  }
+}
+
+
+
