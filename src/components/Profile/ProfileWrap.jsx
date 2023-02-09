@@ -1,15 +1,16 @@
 import React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
-import {setMyStatusThunk} from '../../store/reducers/profileReducer';
+import {getMyStatusThunk, updateMyStatusThunk} from '../../store/reducers/profileReducer';
 
 class ProfileWrap extends React.Component {
   state = {
     profileStatus: this.props.profile.status,
+    statusEdit: false,
   }
 
   componentDidMount() {
-    this.props.setMyStatusThunk()
+    this.props.getMyStatusThunk()
   }
 
   componentDidUpdate(prevProps) {
@@ -20,8 +21,23 @@ class ProfileWrap extends React.Component {
     }
   }
 
+  setEditingStatus = () => {
+    if (!this.state.statusEdit) {
+      this.setState({
+        statusEdit: true,
+      })
+    } else {
+      this.setState({
+        statusEdit: false,
+      })
+
+      if (this.props.profile.status !== this.state.profileStatus) {
+        this.props.updateMyStatusThunk(this.state.profileStatus)
+      }
+    }
+  }
+
   changeStatus = (e) => {
-    console.log(e.target.value)
     this.setState({
       profileStatus: e.target.value
     })
@@ -32,6 +48,8 @@ class ProfileWrap extends React.Component {
       {...this.props.profile}
       profileStatus={this.state.profileStatus}
       changeStatus={this.changeStatus}
+      statusEdit={this.state.statusEdit}
+      setEditingStatus={this.setEditingStatus}
     />
   }
 }
@@ -44,8 +62,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setMyStatusThunk: () => {
-      dispatch(setMyStatusThunk())
+    getMyStatusThunk: () => {
+      dispatch(getMyStatusThunk())
+    },
+    updateMyStatusThunk: (status) => {
+      dispatch(updateMyStatusThunk(status))
     }
   }
 }

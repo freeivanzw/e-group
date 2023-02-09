@@ -74,8 +74,7 @@ export const updateMyProfileThunk = (myProfile) => {
   }
 }
 
-export const setMyStatusThunk = () => {
-
+export const getMyStatusThunk = () => {
   return (dispatch, getState) => {
     profileAsync.getUserStatus(getState().profile.myProfile.userId)
       .then((data) => {
@@ -84,5 +83,13 @@ export const setMyStatusThunk = () => {
   }
 }
 
+export const updateMyStatusThunk = (status) => {
+  return (dispatch) => {
+    profileAsync.updateMyStatus(status)
+      .then((data) => {
+        dispatch(setMyStatusAC(status));
+      })
+  }
+}
 
 

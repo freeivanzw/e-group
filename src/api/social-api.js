@@ -58,6 +58,10 @@ export const profileAsync = {
   getUserStatus: (id) => {
     return socialApi.get(`profile/status/${id}`)
       .then((res) => res.data)
+  },
+  updateMyStatus: (status) => {
+    return socialApi.put('profile/status', {status})
+      .then((res) => res.data)
   }
 }
 

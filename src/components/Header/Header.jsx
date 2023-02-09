@@ -1,6 +1,10 @@
-
 import {NavLink} from 'react-router-dom';
-import {LogoHeader, Logout, SiteHeader, UserBox, UserName, LoginBtn} from './styled';
+import {LogoHeader} from './styled/LogoHeader';
+import {Logout} from './styled/Logout';
+import {SiteHeader} from './styled/SiteHeader';
+import {UserBox} from './styled/UserBox';
+import {UserName} from './styled/UserName';
+import {LoginBtn} from './styled/LoginBtn';
 import {CenterContainer} from '../../theme/components/CenterContainer';
 
 const Header = (props) => {

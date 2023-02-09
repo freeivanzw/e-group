@@ -1,20 +1,40 @@
-import {ProfileStyle, UserPhoto, UserContent, UserBox, AboutMeStyled, SearchJob, SocialLink, SocialList, EditProfile} from './ProfileStyled';
-import {useEffect, useState} from 'react';
+import {UserPhoto} from './styled/UserPhoto';
+import {ProfileStyle} from './styled/ProfileStyle';
+import {UserContent} from './styled/UserContent';
+import {UserBox} from './styled/UserBox';
+import {AboutMeStyled} from './styled/AboutMeStyled';
+import {SearchJob} from './styled/SearchJob';
+import {SocialLink} from './styled/SocialLink';
+import {SocialList} from './styled/SocialList';
+import {EditProfile} from './styled/EditProfile';
+import {Status} from './styled/Status';
+import {StatusEdit} from './styled/StatusEdit';
+
 
 const Profile = (props) => {
-  const {fullName, aboutMe, contacts, lookingForAJob, status, profileStatus, changeStatus} = props;
-
+  const {
+    fullName, aboutMe, contacts,
+    lookingForAJob, status, profileStatus,
+    changeStatus, statusEdit, setEditingStatus,
+    photos
+  } = props;
+  
   return <ProfileStyle>
-    <UserPhoto src="https://cdn-icons-png.flaticon.com/512/9628/9628241.png"/>
+    <UserPhoto src={photos.large}/>
     <UserContent>
       <EditProfile to="edit">Редагувати профіль</EditProfile>
-      <UserBox src="https://cdn-icons-png.flaticon.com/512/9628/9628241.png">{fullName}</UserBox>
+      <UserBox src={photos.small}>{fullName}</UserBox>
       <SearchJob search={lookingForAJob}>{lookingForAJob ? 'шукаю роботу' : 'не шукаю роботу'}</SearchJob>
-      {status && <div>
-        <span>{status}</span>
-        <input type="text" value={profileStatus ? profileStatus : ''} onInput={changeStatus}/>
-        <button>+</button>
-      </div>}
+      {status && !statusEdit
+        ? <Status
+        setEditingStatus={setEditingStatus}
+        >{status}</Status>
+        : <StatusEdit
+          profileStatus={profileStatus}
+          changeStatus={changeStatus}
+          setEditingStatus={setEditingStatus}
+        ></StatusEdit>
+      }
       {aboutMe && <AboutMeStyled>{aboutMe}</AboutMeStyled>}
       <SocialList>
         <SocialLink href={contacts.github} icon="github"/>
