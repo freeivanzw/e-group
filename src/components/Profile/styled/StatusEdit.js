@@ -4,6 +4,7 @@ import icon from '../../../assets/sprite.svg';
 const StatusEditStyled = styled.div`
     display: flex;
     align-items: center;
+    margin-bottom: 8px;
 
     button {
       margin-right: 6px;

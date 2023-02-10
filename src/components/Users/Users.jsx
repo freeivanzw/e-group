@@ -1,10 +1,9 @@
-import { Outlet } from 'react-router'
+import {UsersBox} from './styled/UsersBox';
 
 const Users = (props) => {
-  return <div className="users">
+  return <UsersBox className="users">
     users
-    <Outlet />
-  </div>
+  </UsersBox>
 }
 
 export default Users;

@@ -18,7 +18,7 @@ const Profile = (props) => {
     changeStatus, statusEdit, setEditingStatus,
     photos
   } = props;
-  
+
   return <ProfileStyle>
     <UserPhoto src={photos.large}/>
     <UserContent>

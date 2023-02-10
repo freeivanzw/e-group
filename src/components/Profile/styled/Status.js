@@ -5,6 +5,7 @@ const StatusStyled = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
+    margin-bottom: 8px;
     
     button {
       margin-right: 6px;

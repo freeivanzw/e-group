@@ -124,5 +124,5 @@ export const AppComponent = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  padding-top: 30px;
+  padding-top: 10px;
 `
