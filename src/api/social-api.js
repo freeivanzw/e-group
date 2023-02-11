@@ -2,6 +2,9 @@ import axios from 'axios';
 
 const socialApi = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+  headers: {
+    'API-KEY': '1c00b7ae-5c89-4b4e-8b87-d6fc9d812549'
+  },
   withCredentials: true,
 })
 
