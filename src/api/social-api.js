@@ -6,9 +6,13 @@ const socialApi = axios.create({
 })
 
 export const usersAsync = {
-  getUsers: () => {
-    return socialApi.get('users')
-      .then((res) => res.data)
+  getUsers: (pageNumber, pageSize = 16) => {
+    return socialApi.get('users', {
+      params: {
+        count: pageSize,
+        page: pageNumber,
+      }
+    }).then((res) => res.data)
   }
 }
 
