@@ -12,5 +12,9 @@ export const SiteHeader = styled.header`
     justify-content: space-between;
     align-items: center;
   }
+
+  @media (min-width: 760px) {
+    z-index: 1;
+  }
 `;
 

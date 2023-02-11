@@ -47,7 +47,7 @@ export const loginThunk = (email, password, rememberMe, captcha, setErrors) => {
     authAsync.login(email, password, rememberMe, captcha)
       .then((data) => {
         if (data.resultCode === 0) {
-          profileAsync.getMyProfile(data.data.userId)
+          profileAsync.getProfile(data.data.userId)
             .then((data) => {
               dispatch(setAuthAC(true));
               dispatch(setMyProfileAC(data))

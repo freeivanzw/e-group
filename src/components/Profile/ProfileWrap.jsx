@@ -1,12 +1,14 @@
 import React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
-import {getMyStatusThunk, updateMyStatusThunk} from '../../store/reducers/profileReducer';
+import {getMyStatusThunk, updateMyPhotosThunk, updateMyStatusThunk} from '../../store/reducers/profileReducer';
+import {profileAsync} from '../../api/social-api';
 
 class ProfileWrap extends React.Component {
   state = {
     profileStatus: this.props.profile.status,
     statusEdit: false,
+    chooseBibPhoto: undefined,
   }
 
   componentDidMount() {
@@ -43,6 +45,16 @@ class ProfileWrap extends React.Component {
     })
   }
 
+  editBibPhoto = (e) => {
+    let formData = new FormData();
+
+    if (e.target.files[0]) {
+      formData.append('image', e.target.files[0])
+      this.props.updateMyPhotosThunk(formData)
+    }
+
+  }
+
   render() {
     return <Profile
       {...this.props.profile}
@@ -50,6 +62,8 @@ class ProfileWrap extends React.Component {
       changeStatus={this.changeStatus}
       statusEdit={this.state.statusEdit}
       setEditingStatus={this.setEditingStatus}
+      chooseBibPhoto={this.state.chooseBibPhoto}
+      editBibPhoto={this.editBibPhoto}
     />
   }
 }
@@ -67,6 +81,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateMyStatusThunk: (status) => {
       dispatch(updateMyStatusThunk(status))
+    },
+    updateMyPhotosThunk: (formData) => {
+      dispatch(updateMyPhotosThunk(formData))
     }
   }
 }

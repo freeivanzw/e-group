@@ -5,9 +5,10 @@ import {UserImage} from './styled/UserImage';
 import {UserLink} from './styled/UserLink';
 import PaginatorWrap from '../Paginator/PaginatorWrap';
 import {connect} from 'react-redux';
+import {SubscribeBtn} from './styled/SubscribeBtn';
 
 const Users = (props) => {
-  const {usersList} = props;
+  const {usersList, toggleFollowUser} = props;
 
   return <UsersBox>
     {(usersList)
@@ -19,7 +20,11 @@ const Users = (props) => {
               photo={user.photos.small}
               alt={`користувач ${user.name}`}>
             </UserImage>
-            <UserLink to={`profile/${user.id}`}>{user.name}</UserLink>
+            <UserLink to={`/users/${user.id}`}>{user.name}</UserLink>
+            <SubscribeBtn
+              isSubscribed={user.followed}
+              onClick={() => toggleFollowUser(user.id, user.followed)}
+            >{!user.followed ? 'Підписатись' : 'Відписатись'}</SubscribeBtn>
           </UserCard>
         </li>)}
       </UsersList>

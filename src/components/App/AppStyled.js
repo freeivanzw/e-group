@@ -112,12 +112,30 @@ export const Global = createGlobalStyle`
     font-weight: 400;
     font-size: 15px;
     line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .app_row {
     display: flex;
+    flex: 1 1 auto;
   }
-
+  
+  #root {
+    flex: 1 1 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .app_wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+  
 `
 
 export const AppComponent = styled.div`
@@ -125,4 +143,9 @@ export const AppComponent = styled.div`
   flex-direction: column;
   flex: 1 1 auto;
   padding-top: 10px;
+
+  @media (min-width: 760px) {
+    padding-top: 20px;
+    padding-left: 10px;
+  }
 `

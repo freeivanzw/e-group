@@ -36,7 +36,7 @@ export const authAsync = {
 }
 
 export const profileAsync = {
-  getMyProfile: (id) => {
+  getProfile: (id) => {
     return socialApi.get(`profile/${id}`)
       .then((res) => res.data)
   },
@@ -66,6 +66,13 @@ export const profileAsync = {
   updateMyStatus: (status) => {
     return socialApi.put('profile/status', {status})
       .then((res) => res.data)
+  },
+  updatePhoto: (formData) => {
+    return socialApi.put('profile/photo', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then((res) => res.data)
   }
 }
 
@@ -73,5 +80,14 @@ export const securityAsync = {
   getCaptchaUrl: () => {
     return socialApi.get(`security/get-captcha-url`)
       .then((res) => res.data)
+  }
+}
+
+export const followAsync = {
+  followUser: (id) => {
+    return socialApi.post(`follow/${id}`).then((res) => res.data)
+  },
+  unfollowUser: (id) => {
+    return socialApi.delete(`follow/${id}`).then((res) => res.data)
   }
 }

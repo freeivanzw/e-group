@@ -17,6 +17,10 @@ const MenuBtnStyled = styled.button`
     height: 16px;
     fill: ${({theme}) => theme.color.text}
   }
+
+  @media (min-width: 760px) {
+    display: none;
+  }
 `;
 
 export const MenuBtn = (props) => {

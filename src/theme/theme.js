@@ -4,6 +4,7 @@ export const theme = {
     danger: '#cc1b1b',
     success: '#33cc1b',
     text: '#333333',
+    textContrast: '#ffffff',
     link: '#333333',
     border: '#000000',
     shadow: '0px 1px 10px rgb(0 0 0 / 8%)',

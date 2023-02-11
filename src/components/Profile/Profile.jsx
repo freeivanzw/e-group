@@ -11,16 +11,19 @@ import {Status} from './styled/Status';
 import {StatusEdit} from './styled/StatusEdit';
 
 
+
 const Profile = (props) => {
   const {
     fullName, aboutMe, contacts,
     lookingForAJob, status, profileStatus,
     changeStatus, statusEdit, setEditingStatus,
-    photos
+    photos, chooseBibPhoto, editBibPhoto
   } = props;
 
   return <ProfileStyle>
-    <UserPhoto src={photos.large}/>
+    <UserPhoto src={photos.large}>
+      <input type="file" value={chooseBibPhoto} onChange={editBibPhoto}/>
+    </UserPhoto>
     <UserContent>
       <EditProfile to="edit">Редагувати профіль</EditProfile>
       <UserBox src={photos.small}>{fullName}</UserBox>

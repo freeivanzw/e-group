@@ -12,6 +12,7 @@ import ProfileEditWrap from '../ProfileEditWrap/ProfileEditWrap';
 import {MenuBtn} from './styled/MenuBtn';
 import {Connect} from 'react-redux';
 import {CenterContainer} from '../../theme/components/CenterContainer';
+import FooterSite from '../FooterSite/FooterSite';
 
 
 export const AuthorizedTemp = () => {
@@ -23,7 +24,7 @@ export const AuthorizedTemp = () => {
 
   return <div className="app_wrapper">
     <HeaderWrap />
-    <CenterContainer>
+    <CenterContainer siteContainer>
       <div className="app_row">
         <SiteNavWrap
           opened={menuOpened}
@@ -42,13 +43,14 @@ export const AuthorizedTemp = () => {
         </AppComponent>
       </div>
     </CenterContainer>
+    <FooterSite />
   </div>
 }
 
 export const UnauthorizedTemp = () => {
   return <div className="app_wrapper">
     <HeaderWrap />
-    <div className="app_row">
+    <CenterContainer siteContainer>
       <AppComponent>
         <Routes>
           <Route
@@ -58,6 +60,7 @@ export const UnauthorizedTemp = () => {
           <Route path="login" element={<LoginWrap />}/>
         </Routes>
       </AppComponent>
-    </div>
+    </CenterContainer>
+    <FooterSite />
   </div>
 }

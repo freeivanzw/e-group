@@ -17,6 +17,11 @@ const CloseSiteMenuStyled = styled.button`
     height: 16px;
     margin-right: 6px;
   }
+
+  @media (min-width: 760px) {
+    display: none;
+  }
+
 `
 
 export const CloseSiteMenu = (props) => {

@@ -9,6 +9,7 @@ const initialState = {
 
 const SET_MY_PROFILE = 'SET_MY_PROFILE';
 const SET_MY_STATUS = 'SET_MY_STATUS';
+const UPDATE_MY_PHOTO = 'UPDATE_MY_PHOTO';
 
 export const profileReducer = (state = initialState, action ) => {
   switch (action.type){
@@ -30,6 +31,15 @@ export const profileReducer = (state = initialState, action ) => {
         }
       }
     }
+    case (UPDATE_MY_PHOTO): {
+      return {
+        ...state,
+        myProfile: {
+          ...state.myProfile,
+          photos: action.photos,
+        }
+      }
+    }
     default: {
       return state;
     }
@@ -37,14 +47,15 @@ export const profileReducer = (state = initialState, action ) => {
 }
 
 export const setMyProfileAC = (myProfile) => ({type: SET_MY_PROFILE, myProfile: myProfile});
-export const setMyStatusAC = (status) => ({type: SET_MY_STATUS, status: status})
+export const setMyStatusAC = (status) => ({type: SET_MY_STATUS, status: status});
+export const updateMyPhotosAC = (photos) => ({type: UPDATE_MY_PHOTO, photos: photos})
 
 export const setAuthThunk = () => {
   return (dispatch) => {
     authAsync.checkMe()
       .then((data) => {
         if (data.resultCode === 0) {
-          profileAsync.getMyProfile(data.data.id)
+          profileAsync.getProfile(data.data.id)
             .then((data) => {
               dispatch(setAuthAC(true));
               dispatch(setMyProfileAC(data))
@@ -66,9 +77,7 @@ export const updateMyProfileThunk = (myProfile) => {
         if(data.resultCode === 0) {
           dispatch(setMyProfileAC(myProfile))
         } else if (data.resultCode === 1) {
-          data.messages.map((error) => {
-            console.error(error)
-          })
+          console.error(data.messages)
         }
       })
   }
@@ -88,6 +97,17 @@ export const updateMyStatusThunk = (status) => {
     profileAsync.updateMyStatus(status)
       .then((data) => {
         dispatch(setMyStatusAC(status));
+      })
+  }
+}
+
+export const updateMyPhotosThunk = (formData) => {
+  return (dispatch) => {
+    profileAsync.updatePhoto(formData)
+      .then((data) => {
+        if (data.resultCode === 0) {
+          dispatch(updateMyPhotosAC(data.data.photos))
+        }
       })
   }
 }

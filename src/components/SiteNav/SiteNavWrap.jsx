@@ -11,7 +11,6 @@ class SiteNavWrap extends React.Component {
       <ul>
         <li><NavLink to="profile" onClick={this.props.changeOpenedMenu}>Мій профіль</NavLink></li>
         <li><NavLink to="users" onClick={this.props.changeOpenedMenu}>Користувачі</NavLink></li>
-        <li><NavLink to="#">link 3</NavLink></li>
       </ul>
     </SiteNav>
   }
