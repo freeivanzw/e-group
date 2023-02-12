@@ -4,13 +4,14 @@ import FormCheck from '../common/Form/FormCheck';
 import {NavLink} from 'react-router-dom';
 import {EditFormProfile} from './styled/EditFormProfile';
 import {H1} from '../common/Titles/Titles';
+import {BASE_URL} from '../../index';
 
 const ProfileEdit = (props) => {
   const {handleSubmit, errors} = props;
   return <EditFormProfile
     onSubmit={handleSubmit}
   >
-    <NavLink to={process.env.PUBLIC_UR + '/profile'}>Назад</NavLink>
+    <NavLink to={BASE_URL + '/profile'}>Назад</NavLink>
     <H1>Редагування Інформації</H1>
     <FormElement type="text" name="fullName" error={errors.fullName}>Моє ім'я</FormElement>
     <FormElement type="text" name="aboutMe" error={errors.aboutMe}>Про мене</FormElement>
