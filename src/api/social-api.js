@@ -5,6 +5,7 @@ const socialApi = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   headers: {
     'API-KEY': 'b96d5a62-cc4c-49fa-bec9-cfaf5eed9e72',
+    'Access-Control-Allow-Origin': 'https://freeivanzw.github.io',
   },
 })
 
