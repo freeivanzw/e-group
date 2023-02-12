@@ -1,5 +1,6 @@
 import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
+import {BASE_URL} from '../../../index';
 
 const UserLinkStyled = styled.div`
   flex: 1 1 auto;
@@ -13,6 +14,6 @@ const UserLinkStyled = styled.div`
 
 export const UserLink = (props) => {
   return <UserLinkStyled {...props}>
-    <NavLink to={props.to}>{props.children}</NavLink>
+    <NavLink to={BASE_URL + props.to}>{props.children}</NavLink>
   </UserLinkStyled>
 }

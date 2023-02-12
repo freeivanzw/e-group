@@ -10,7 +10,7 @@ const ProfileEdit = (props) => {
   return <EditFormProfile
     onSubmit={handleSubmit}
   >
-    <NavLink to="/profile">Назад</NavLink>
+    <NavLink to={process.env.PUBLIC_UR + '/profile'}>Назад</NavLink>
     <H1>Редагування Інформації</H1>
     <FormElement type="text" name="fullName" error={errors.fullName}>Моє ім'я</FormElement>
     <FormElement type="text" name="aboutMe" error={errors.aboutMe}>Про мене</FormElement>

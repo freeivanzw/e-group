@@ -13,6 +13,7 @@ import {MenuBtn} from './styled/MenuBtn';
 import {Connect} from 'react-redux';
 import {CenterContainer} from '../../theme/components/CenterContainer';
 import FooterSite from '../FooterSite/FooterSite';
+import {BASE_URL} from '../../index';
 
 
 export const AuthorizedTemp = () => {
@@ -33,12 +34,12 @@ export const AuthorizedTemp = () => {
         <AppComponent>
           <MenuBtn onClick={changeOpenedMenu}>Меню</MenuBtn>
           <Routes>
-            <Route path="/" element={<div>start page</div>}/>
-            <Route path="login" element={<LoginWrap />}/>
-            <Route path="profile" element={<ProfileWrap />}/>
-            <Route path="profile/edit" element={<ProfileEditWrap />}/>
-            <Route path="users" element={<UsersWrap />}/>
-            <Route path="users/:id" element={<UserItemWrap />}/>
+            <Route path={BASE_URL + '/'} element={<div>start page</div>}/>
+            <Route path={BASE_URL + '/login'} element={<LoginWrap />}/>
+            <Route path={BASE_URL + '/profile'} element={<ProfileWrap />}/>
+            <Route path={BASE_URL + '/profile/edit'} element={<ProfileEditWrap />}/>
+            <Route path={BASE_URL + '/users'} element={<UsersWrap />}/>
+            <Route path={BASE_URL + '/users/:id'} element={<UserItemWrap />}/>
           </Routes>
         </AppComponent>
       </div>
@@ -55,9 +56,9 @@ export const UnauthorizedTemp = () => {
         <Routes>
           <Route
             path="*"
-            element={<Navigate to="/login" replace />}
+            element={<Navigate to={BASE_URL + '/login'} replace />}
           />
-          <Route path="login" element={<LoginWrap />}/>
+          <Route path={BASE_URL + '/login'} element={<LoginWrap />}/>
         </Routes>
       </AppComponent>
     </CenterContainer>

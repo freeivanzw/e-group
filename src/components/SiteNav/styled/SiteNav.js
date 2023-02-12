@@ -12,6 +12,7 @@ const SiteNavStyled = styled.nav`
   left: 0;
   overflow-x: hidden;
   overflow-y: auto;
+  z-index: 12;
 
   li + li {
     margin-top: 6px;
@@ -33,6 +34,7 @@ const SiteNavStyled = styled.nav`
     align-self: stretch;
     padding: 10px 10px 10px 0;
     border-right: 1px solid ${({theme}) => theme.color.border};
+    z-index: auto;
     
     li + li {
       margin-top: 10px;

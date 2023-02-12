@@ -9,6 +9,9 @@ import {theme} from './theme/theme';
 import {Global} from './components/App/AppStyled';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+export const BASE_URL = process.env.PUBLIC_URL;
+
 root.render(
   <BrowserRouter>
     <ThemeProvider theme={theme}>
